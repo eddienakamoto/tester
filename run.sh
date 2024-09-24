@@ -20,7 +20,7 @@ nohup torchrun src/train.py \
     --overwrite_cache \
     --overwrite_output_dir \
     --warmup_steps 100 \
-    --weight_decay 0.1 \
+    --weight_decay 0.05 \
     --per_device_train_batch_size 4 \
     --gradient_accumulation_steps 4 \
     --ddp_timeout 9000 \
