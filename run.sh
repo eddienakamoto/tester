@@ -1,13 +1,22 @@
+pip install --upgrade huggingface_hub
+huggingface-cli login
+git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
+cd LLaMA-Factory
+pip install -e ".[torch,metrics]"
+
+pip install deepspeed
+# pip install flash-attn --no-build-isolation
+
 torchrun src/train.py \
     --stage sft \
     --do_train \
     --use_fast_tokenizer \
-    --model_name_or_path Qwen/Qwen2-7B-Instruct \
+    --model_name_or_path Qwen/Qwen2.5-7B-Instruct \
     --dataset my_data \
     --template qwen \
     --finetuning_type lora \
     --lora_target q_proj,v_proj\
-    --output_dir ./holy-crap \
+    --output_dir ./eddie-finetuned-qwen2.5-sn35 \
     --overwrite_cache \
     --overwrite_output_dir \
     --warmup_steps 100 \
@@ -23,3 +32,6 @@ torchrun src/train.py \
     --plot_loss \
     --num_train_epochs 3 \
     --bf16
+
+
+pm2 start "vllm serve ./merged_model --port 33271 --host 0.0.0.0" --name "sn35-vllm"
