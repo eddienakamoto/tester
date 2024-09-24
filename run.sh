@@ -7,7 +7,7 @@ pip install -e ".[torch,metrics]"
 pip install deepspeed
 # pip install flash-attn --no-build-isolation
 
-torchrun src/train.py \
+nohup torchrun src/train.py \
     --stage sft \
     --do_train \
     --use_fast_tokenizer \
@@ -16,7 +16,7 @@ torchrun src/train.py \
     --template qwen \
     --finetuning_type lora \
     --lora_target q_proj,v_proj\
-    --output_dir ./eddie-finetuned-qwen2.5-sn35 \
+    --output_dir ./eddie-v2 \
     --overwrite_cache \
     --overwrite_output_dir \
     --warmup_steps 100 \
@@ -31,7 +31,7 @@ torchrun src/train.py \
     --save_steps 1000 \
     --plot_loss \
     --num_train_epochs 3 \
-    --bf16
+    --bf16 > output.log 2>&1 &
 
 
 pm2 start "vllm serve ./merged_model --port 33271 --host 0.0.0.0" --name "sn35-vllm"
