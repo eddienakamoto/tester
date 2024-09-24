@@ -24,12 +24,12 @@ merged_model = lora_model.merge_and_unload()
 
 # Save the merged model
 print("Saving merged model...")
-merged_model.save_pretrained("./eddie_qwen2.5", safe_serialization=True)
+merged_model.save_pretrained("./eddie", safe_serialization=True)
 
 # Save the tokenizer
 print("Saving tokenizer...")
 tokenizer = AutoTokenizer.from_pretrained(
     "Qwen/Qwen2.5-7B-Instruct", trust_remote_code=True)
-tokenizer.save_pretrained("./merged_model")
+tokenizer.save_pretrained("./eddie")
 
 print("Model and tokenizer saved to ./merged_model")
