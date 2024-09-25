@@ -16,7 +16,7 @@ base_model = AutoModelForCausalLM.from_pretrained(
 # Load the LoRA model
 print("Loading LoRA model...")
 lora_model = PeftModel.from_pretrained(
-    base_model, "../LLaMA-Factory/eddie-v2", is_trainable=False)
+    base_model, "../LLaMA-Factory/eddie-v3", is_trainable=False)
 
 # Merge weights
 print("Merging weights...")
