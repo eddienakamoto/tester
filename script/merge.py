@@ -16,7 +16,7 @@ base_model = AutoModelForCausalLM.from_pretrained(
 # Load the LoRA model
 print("Loading LoRA model...")
 lora_model = PeftModel.from_pretrained(
-    base_model, "../LLaMA-Factory/eddie", is_trainable=False)
+    base_model, "../LLaMA-Factory/eddie-v2", is_trainable=False)
 
 # Merge weights
 print("Merging weights...")
@@ -32,4 +32,4 @@ tokenizer = AutoTokenizer.from_pretrained(
     "Qwen/Qwen2.5-7B-Instruct", trust_remote_code=True)
 tokenizer.save_pretrained("./eddie")
 
-print("Model and tokenizer saved to ./merged_model")
+print("Model and tokenizer saved to ./eddie")

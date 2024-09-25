@@ -7,6 +7,13 @@ pip install -e ".[torch,metrics]"
 pip install deepspeed
 # pip install flash-attn --no-build-isolation
 
+# Inside LLaMA-Factory
+python -m pip install --upgrade huggingface_hub && \
+python -m pip install -e ".[torch,metrics]" && \
+python -m pip install deepspeed && \
+python -m pip install hf_transfer && \
+huggingface-cli login
+
 nohup torchrun src/train.py \
     --stage sft \
     --do_train \
