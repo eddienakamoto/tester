@@ -23,10 +23,10 @@ nohup torchrun src/train.py \
     --template qwen \
     --finetuning_type lora \
     --lora_target q_proj,v_proj\
-    --output_dir ./eddie-v2 \
+    --output_dir ./eddie-v3 \
     --overwrite_cache \
     --overwrite_output_dir \
-    --warmup_steps 100 \
+    --warmup_steps 1000 \
     --weight_decay 0.05 \
     --per_device_train_batch_size 4 \
     --gradient_accumulation_steps 4 \
